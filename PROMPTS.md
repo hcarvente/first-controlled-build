@@ -49,3 +49,11 @@ A running record of the prompts given to build this one-page website, and what w
 **Prompt:** Chose near-black for body text (with brand colors elsewhere) and a free Google Fonts lookalike for the body font (Open Sauce isn't available there). Also asked whether adding 3 fixed photos in Section 2 and a program flyer image in Section 3 would affect the color scheme, then asked to apply the brand color pass and add image placeholders.
 
 **Built:** Applied the full brand color pass to `style.css` (cream page background, green headings/links/CTA, blue decorative underlines and photo/flyer borders, pink theme cards, orange CTA hover state, near-black `#1a1a1a` body text) and linked Google's Open Sans font in `index.html` as the Open Sauce substitute. Added a fixed 3-photo row to Section 2 (`.gain-photos`) and a flyer image to Section 3 (`.flyer`), both using inline SVG placeholders as `src` (clearly labeled in alt text) so real images can be swapped in later without restructuring the layout.
+
+---
+
+### 7. Review the code, then wire up the real photos and flyer
+
+**Prompt:** Asked for a full review of the code so far (comment coverage + possible breakage), then to add the two missing comments, set up a file path for real photos/flyer before editing code, and give JavaScript recommendations to make the content/images stand out more. Followed up by adding the actual image files and asking to commit everything together.
+
+**Built:** Reviewed `index.html`, `style.css`, and `script.js` — found no breaking bugs (valid tag structure, correct heading order, properly percent-encoded inline SVG data URIs) and two minor comment gaps, which were fixed (`--color-white` variable, `<head>` meta tags, and the `<script>` tag). Created an `images/` folder with an expected filename convention (`photo-1.jpg`, `photo-2.jpg`, `photo-3.jpg`, `flyer.jpg`). Gave JS recommendations (scroll-reveal fade-in and a photo lightbox as the top picks) without implementing yet. Once the real files were added, replaced the SVG placeholders in `index.html` with the real image paths, wrote descriptive alt text based on what's actually in each photo/flyer, added `loading="lazy"`, and adjusted the flyer's CSS aspect ratio to match its real proportions so `object-fit: cover` doesn't crop it. Added a `.gitignore` for `.DS_Store`.

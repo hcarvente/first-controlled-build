@@ -6,7 +6,7 @@
   --color-pink: #FFB7CF;      /* secondary — light background tint for cards */
   --color-cream: #F4E9D7;     /* secondary — page background */
   --color-text: #1a1a1a;      /* near-black for body copy; standard choice, not in brand kit */
-  --color-white: #ffffff;
+  --color-white: #ffffff;     /* plain white, used as text on the green CTA button */
   --max-width: 720px;
 }
 
@@ -134,12 +134,12 @@ section h2 {
   border: 2px solid var(--color-blue);
 }
 
-/* Section 3: flyer image, fixed aspect ratio so layout doesn't shift once the real flyer is added */
+/* Section 3: flyer image, aspect ratio matches the real flyer (2454x1840) so cover doesn't crop it */
 .flyer {
   display: block;
   width: 100%;
-  max-width: 320px;
-  aspect-ratio: 4 / 5.2;
+  max-width: 480px;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   margin: 1.5rem auto 0;
   border-radius: 8px;

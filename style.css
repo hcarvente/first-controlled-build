@@ -7,12 +7,17 @@
   --color-cream: #F4E9D7;     /* secondary — page background */
   --color-text: #1a1a1a;      /* near-black for body copy; standard choice, not in brand kit */
   --color-white: #ffffff;     /* plain white, used as text on the green CTA button */
-  --max-width: 720px;
+  --max-width: 960px;
 }
 
 /* Base reset */
 * {
   box-sizing: border-box;
+}
+
+/* Bumps the root font size so every rem-based size on the page scales up proportionally */
+html {
+  font-size: 112.5%;
 }
 
 body {
@@ -48,51 +53,44 @@ button:focus-visible {
   text-align: center;
 }
 
+/* Org logo, centered above the headline (wide horizontal lockup, ~4:1 aspect ratio) */
+.site-logo {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  margin: 0 auto 1.5rem;
+}
+
 .hero h1 {
-  font-size: 2rem;
+  font-size: 2.25rem;
   line-height: 1.25;
   margin: 0 0 1rem;
 }
 
 .hero .intro {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   margin: 0;
 }
 
-/* Quick facts (from the flyer): single column on mobile, two columns once there's room */
+/* Quick facts (from the flyer): plain bullet list, left-aligned within the centered hero */
 .quick-facts {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.75rem;
-  margin: 2rem 0 0;
   text-align: left;
+  max-width: 640px;
+  margin: 1.75rem auto 0;
+  padding-left: 1.25rem;
 }
 
-@media (min-width: 640px) {
-  .quick-facts {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.quick-facts li {
+  margin-bottom: 0.6rem;
 }
 
-/* Each fact is its own blue card — the one place blue is used as a background rather than a text color */
-.fact {
-  background-color: var(--color-blue);
-  border-radius: 8px;
-  padding: 1rem 1.25rem;
+.quick-facts li:last-child {
+  margin-bottom: 0;
 }
 
-.fact dt {
-  font-weight: 700;
+.quick-facts strong {
   color: var(--color-green);
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 0.03em;
-  margin-bottom: 0.25rem;
-}
-
-.fact dd {
-  margin: 0;
-  color: var(--color-text);
 }
 
 /* Page content width + spacing between sections */
@@ -108,7 +106,7 @@ section {
 
 /* Blue rule under each section heading — decorative only, so blue's weak text contrast never matters */
 section h2 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   margin-bottom: 1.25rem;
   border-bottom: 3px solid var(--color-blue);
   padding-bottom: 0.5rem;
@@ -127,7 +125,7 @@ section h2 {
 }
 
 .theme h3 {
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   margin: 0 0 0.5rem;
 }
 
@@ -157,13 +155,13 @@ section h2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.25rem;
   margin-top: 1.5rem;
 }
 
 .gain-photo {
   width: 100%;
-  max-width: 200px;
+  max-width: 280px;
   aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 8px;
@@ -174,7 +172,7 @@ section h2 {
 .flyer {
   display: block;
   width: 100%;
-  max-width: 360px;
+  max-width: 460px;
   aspect-ratio: 1545 / 1999;
   object-fit: cover;
   margin: 1.5rem auto 0;
@@ -206,6 +204,6 @@ section h2 {
 /* Responsive: larger headline once there's room for it */
 @media (min-width: 640px) {
   .hero h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
 }

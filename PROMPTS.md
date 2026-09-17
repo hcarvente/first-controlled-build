@@ -65,3 +65,19 @@ A running record of the prompts given to build this one-page website, and what w
 **Prompt:** Asked to fold the flyer's key details (cost, format, stipend, commitments, eligibility) into real text at the very top of the page — explicitly without adding a fourth section — and keep the flyer image itself at the end. Also asked to compress all four images to similar, easily-loadable sizes, with an eye toward the scroll-reveal and lightbox JavaScript planned for later.
 
 **Built:** Added a `<dl class="quick-facts">` inside the `<header>` (not a new `<section>`), right after the intro paragraph, listing Cost, Format, Stipend, Commitments, and Eligibility as real, screen-reader-readable text pulled from the flyer. Styled it as a responsive 1/2-column grid of blue fact cards in `style.css`. Caught and fixed a mistake from the prior step: the flyer is actually portrait (1545×1999), not landscape as assumed, so the earlier `aspect-ratio: 4/3` would have cropped it badly — corrected to match its real proportions. Compressed all four images with `sips` (downscaled to a 1600px max dimension, JPEG quality tuned per file) to bring them from 0.4–6MB down to a consistent 316–416KB range, while keeping enough resolution for a larger lightbox view later.
+
+---
+
+### 9. Bullet-point facts, add the logo, and size everything up
+
+**Prompt:** Asked to convert the quick-facts cards into plain bullet points within the intro area, add the organization's logo at the very top (being added to the images folder), and make the overall page — fonts and images — larger since it felt small and overly centered.
+
+**Built:** Replaced the `<dl>`/card version of the quick facts with a plain `<ul class="quick-facts">` bullet list, still inside the `<header>`, styled with bolded green labels instead of separate blue cards. Added a logo placeholder (`.site-logo`, same inline-SVG-placeholder pattern used for the photos/flyer) centered above the headline — real file expected at `images/logo.png`. Sized the page up: bumped the root font size 12.5% so all rem-based text scales, widened the page's max-width from 720px to 960px, enlarged the h1/intro/section headings/theme headings, and increased the photo and flyer max-widths (200px→280px, 360px→460px). Verified the result at both desktop (1300px) and phone (500px) widths via screenshot before reporting back — not yet committed, pending confirmation the sizing looks right.
+
+---
+
+### 10. Wire up the real logo and commit the sizing pass
+
+**Prompt:** Confirmed the logo file was added to `images/`, asked to wire it in at the top, commit everything from this round, push to main, and update the prompt log.
+
+**Built:** Found `images/logo.png` was a 3300×3300 canvas with the actual logo (a horizontal icon + wordmark lockup) occupying only a thin strip in the middle — installed Pillow to detect the real content bounding box and cropped it down to 2760×682 (removing the excess transparent padding) so it wouldn't render tiny with huge empty margins. Swapped the SVG placeholder in `index.html` for the real `images/logo.png` and adjusted `.site-logo` in `style.css` to match its actual ~4:1 aspect ratio. Verified with a screenshot that it renders correctly at the top of the page, then committed and pushed everything from steps 9–10 (bullet-point facts, logo, larger sizing) to `main`.

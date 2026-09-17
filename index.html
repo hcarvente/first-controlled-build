@@ -5,6 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alianza Leadership Program | Alianza for Opportunity</title>
+
+  <!-- Description + preview card (Open Graph/Twitter) shown when this link is shared -->
+  <meta name="description" content="A leadership program for emerging leaders ages 18-25 ready to strengthen their voice, lead with authenticity, and create change alongside others.">
+  <meta property="og:title" content="Alianza Leadership Program | Alianza for Opportunity">
+  <meta property="og:description" content="A leadership program for emerging leaders ages 18-25 ready to strengthen their voice, lead with authenticity, and create change alongside others.">
+  <meta property="og:type" content="website">
+  <!-- og:image needs to be an absolute URL once this page is live (e.g. https://yourdomain.org/images/icon-512.png) -->
+  <meta property="og:image" content="images/icon-512.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Alianza Leadership Program | Alianza for Opportunity">
+  <meta name="twitter:description" content="A leadership program for emerging leaders ages 18-25 ready to strengthen their voice, lead with authenticity, and create change alongside others.">
+  <meta name="twitter:image" content="images/icon-512.png">
+
+  <!-- Favicon (browser tab) and Apple touch icon (iOS home screen) -->
+  <link rel="icon" type="image/png" href="images/icon-32.png">
+  <link rel="apple-touch-icon" href="images/icon-180.png">
+
   <!-- Open Sans: free Google Fonts stand-in for the brand's Open Sauce (not available on Google Fonts) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -35,17 +52,18 @@
     <section aria-labelledby="learn-heading">
       <h2 id="learn-heading">What You'll Learn</h2>
 
-      <article class="theme">
+      <!-- data-reveal: fades/slides each card in as it scrolls into view (see script.js) -->
+      <article class="theme" data-reveal>
         <h3>Values-Based Leadership</h3>
         <p>Participants identify their personal values, challenge traditional leadership myths, explore different leadership styles, and develop principles for authentic, purpose-driven leadership.</p>
       </article>
 
-      <article class="theme">
+      <article class="theme" data-reveal>
         <h3>Healing, Power, and Resilience</h3>
         <p>Participants explore healing as a leadership practice, develop grounding strategies, examine power and privilege, and learn to lead with awareness, confidence, and accountability.</p>
       </article>
 
-      <article class="theme">
+      <article class="theme" data-reveal>
         <h3>Personal and Collective Storytelling</h3>
         <p>Participants learn to communicate their lived experiences with intention, establish appropriate boundaries, and connect individual stories to a shared purpose.</p>
       </article>
@@ -64,11 +82,11 @@
         <li>Connection and community through shared reflection</li>
       </ul>
 
-      <!-- Fixed 3-photo block: real program photos -->
+      <!-- Fixed 3-photo block: real program photos. data-reveal fades each in on scroll; click to open in the lightbox (see script.js) -->
       <div class="gain-photos">
-        <img class="gain-photo" src="images/photo-1.jpg" loading="lazy" alt="Group of Alianza Leadership Program participants smiling together around a table, one holding an Alianza for Opportunity tote bag">
-        <img class="gain-photo" src="images/photo-2.jpg" loading="lazy" alt="Program participants and mentors seated in a circle during a group discussion">
-        <img class="gain-photo" src="images/photo-3.jpg" loading="lazy" alt="Program participants posing together in front of a 'Galaxy Gives' sign, some holding certificates">
+        <img class="gain-photo" src="images/photo-1.jpg" loading="lazy" data-reveal alt="Group of Alianza Leadership Program participants smiling together around a table, one holding an Alianza for Opportunity tote bag">
+        <img class="gain-photo" src="images/photo-2.jpg" loading="lazy" data-reveal alt="Program participants and mentors seated in a circle during a group discussion">
+        <img class="gain-photo" src="images/photo-3.jpg" loading="lazy" data-reveal alt="Program participants posing together in front of a 'Galaxy Gives' sign, some holding certificates">
       </div>
     </section>
 
@@ -86,8 +104,8 @@
         <li>Opportunities within Alianza for Opportunity</li>
       </ul>
 
-      <!-- Program flyer: real flyer image -->
-      <img class="flyer" src="images/flyer.jpg" loading="lazy" alt="Alianza for Opportunity Leadership Program flyer with program details and eligibility information">
+      <!-- Program flyer: real flyer image. data-reveal fades it in on scroll; click to open in the lightbox (see script.js) -->
+      <img class="flyer" src="images/flyer.jpg" loading="lazy" data-reveal alt="Alianza for Opportunity Leadership Program flyer with program details and eligibility information">
     </section>
 
     <!-- CTA: href is a placeholder until the real application URL is provided -->
@@ -96,7 +114,7 @@
     </div>
   </main>
 
-  <!-- Site JavaScript (currently empty, no behavior added yet) -->
+  <!-- Site JavaScript: scroll-reveal animation and the photo/flyer lightbox -->
   <script src="script.js"></script>
 </body>
 </html>

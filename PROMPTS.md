@@ -81,3 +81,19 @@ A running record of the prompts given to build this one-page website, and what w
 **Prompt:** Confirmed the logo file was added to `images/`, asked to wire it in at the top, commit everything from this round, push to main, and update the prompt log.
 
 **Built:** Found `images/logo.png` was a 3300×3300 canvas with the actual logo (a horizontal icon + wordmark lockup) occupying only a thin strip in the middle — installed Pillow to detect the real content bounding box and cropped it down to 2760×682 (removing the excess transparent padding) so it wouldn't render tiny with huge empty margins. Swapped the SVG placeholder in `index.html` for the real `images/logo.png` and adjusted `.site-logo` in `style.css` to match its actual ~4:1 aspect ratio. Verified with a screenshot that it renders correctly at the top of the page, then committed and pushed everything from steps 9–10 (bullet-point facts, logo, larger sizing) to `main`.
+
+---
+
+### 11. Full code review, preview-card meta tags, and favicon
+
+**Prompt:** Asked for a full review of the HTML/CSS for gaps (findings: photo cropping on the 4:3 boxes, brand header font never actually applied, borderline button-hover contrast, plus several minor nice-to-haves). Then asked to add meta tags for a social preview card, mentioned an `icon.png` was being added to use as the favicon "and where it makes sense," and asked for sample JavaScript for scroll-reveal and a photo lightbox — shown only, not added to `script.js` yet.
+
+**Built:** Cropped `images/icon.png` to its actual circular-logo content (removing excess padding) and generated `icon-32.png`, `icon-180.png`, and `icon-512.png` from it. Added to `index.html`'s `<head>`: a `meta description`, Open Graph and Twitter Card tags (using `icon-512.png` as the preview image — noted that `og:image`/`twitter:image` will need to become absolute URLs once the site has a real domain), a favicon link (`icon-32.png`), and an apple-touch-icon link (`icon-180.png`). Provided sample scroll-reveal and lightbox JavaScript in chat for review — not yet written to `script.js`, pending decisions on which elements get the reveal treatment and confirmation on the small amount of accompanying CSS the lightbox needs.
+
+---
+
+### 12. Implement the scroll-reveal and lightbox JavaScript
+
+**Prompt:** After asking for a plain-language explanation of how scroll-reveal works, approved the earlier suggestion for both which elements get the fade-in treatment and the lightbox CSS as shown.
+
+**Built:** Added `data-reveal` attributes to the three `.theme` cards, the three `.gain-photo` images, and the `.flyer` image in `index.html` (bullet lists intentionally left out, per the earlier discussion, so they don't animate line-by-line). Added the `[data-reveal]`/`.is-visible` fade+slide CSS and the `.lightbox`/`.lightbox-image`/`.lightbox-close` overlay CSS to `style.css`. Wrote the actual scroll-reveal (IntersectionObserver, respects `prefers-reduced-motion`) and lightbox (click a photo/flyer to view larger, closes on click-outside/Escape/close button) JavaScript into `script.js`. Verified in a headless browser that reveal elements start correctly hidden below the fold and that no JavaScript errors occur on load.

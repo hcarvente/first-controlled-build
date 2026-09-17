@@ -97,3 +97,11 @@ A running record of the prompts given to build this one-page website, and what w
 **Prompt:** After asking for a plain-language explanation of how scroll-reveal works, approved the earlier suggestion for both which elements get the fade-in treatment and the lightbox CSS as shown.
 
 **Built:** Added `data-reveal` attributes to the three `.theme` cards, the three `.gain-photo` images, and the `.flyer` image in `index.html` (bullet lists intentionally left out, per the earlier discussion, so they don't animate line-by-line). Added the `[data-reveal]`/`.is-visible` fade+slide CSS and the `.lightbox`/`.lightbox-image`/`.lightbox-close` overlay CSS to `style.css`. Wrote the actual scroll-reveal (IntersectionObserver, respects `prefers-reduced-motion`) and lightbox (click a photo/flyer to view larger, closes on click-outside/Escape/close button) JavaScript into `script.js`. Verified in a headless browser that reveal elements start correctly hidden below the fold and that no JavaScript errors occur on load.
+
+---
+
+### 13. Update the stipend and swap in the updated flyer
+
+**Prompt:** Nonprofit feedback: the stipend is changing from $800 to $500, and a replacement flyer was on its way. Confirmed "cost" meant the stipend line, then replaced `images/flyer.jpg` with the new version.
+
+**Built:** Looked at the new flyer rather than assuming only the stipend changed — confirmed everything else (Cost, Format, Commitments, Eligibility) is identical to the original. Updated the `Stipend` bullet in `index.html`'s quick-facts list from $800 to $500. Compressed the new flyer with the same settings used before (1600px max dimension, quality-tuned) so it stays consistent with the other images' file sizes; its dimensions matched the original flyer exactly, so no CSS aspect-ratio changes were needed. Verified the text update with a screenshot before committing.

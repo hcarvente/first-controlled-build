@@ -33,3 +33,19 @@ A running record of the prompts given to build this one-page website, and what w
 **Prompt:** Add comment lines throughout the code marking what each section does, and keep doing this for every piece of code going forward.
 
 **Built:** Added comments to `index.html` (hero, each of the three sections, and the CTA) and `style.css` (color/sizing variables, reset, focus state, hero, layout, each section's styles, CTA button, media query). This commenting practice will continue for all future HTML/CSS/JS in this project.
+
+---
+
+### 5. Apply the brand color palette
+
+**Prompt:** Supplied Alianza for Opportunity's official brand guidelines (PDF) and stacked logo, asked for a review of the colors and a recommended layout that uses the brand palette without any one color overwhelming the page — sample code only, no file edits yet.
+
+**Built:** Reviewed the guidelines: primary colors blue `#64B1F2`, green `#037033`, orange `#FA641A`; secondary pink `#FFB7CF`, cream `#F4E9D7`; fonts Serat Ultra (logo), Anton (headers), Open Sauce (body); logo-on-light-background rule (blue & green version). Ran WCAG contrast checks and found blue and orange both fail as normal body/link text on a light background, so proposed reserving them for decorative use (underlines, hover states) rather than text, with green carrying headings/links/CTA. Shared sample CSS for review — no files changed in this step.
+
+---
+
+### 6. Decide open questions, add image placeholders, and apply the pass
+
+**Prompt:** Chose near-black for body text (with brand colors elsewhere) and a free Google Fonts lookalike for the body font (Open Sauce isn't available there). Also asked whether adding 3 fixed photos in Section 2 and a program flyer image in Section 3 would affect the color scheme, then asked to apply the brand color pass and add image placeholders.
+
+**Built:** Applied the full brand color pass to `style.css` (cream page background, green headings/links/CTA, blue decorative underlines and photo/flyer borders, pink theme cards, orange CTA hover state, near-black `#1a1a1a` body text) and linked Google's Open Sans font in `index.html` as the Open Sauce substitute. Added a fixed 3-photo row to Section 2 (`.gain-photos`) and a flyer image to Section 3 (`.flyer`), both using inline SVG placeholders as `src` (clearly labeled in alt text) so real images can be swapped in later without restructuring the layout.

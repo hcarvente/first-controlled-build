@@ -1,10 +1,12 @@
-/* Color palette + shared sizing (placeholder colors, no brand kit supplied yet) */
+/* Brand colors pulled from Alianza for Opportunity's 2024 brand guidelines */
 :root {
-  --color-bg: #ffffff;
-  --color-text: #1a1a1a;
-  --color-accent: #6a2c5c;
-  --color-accent-text: #ffffff;
-  --color-section-bg: #faf7f9;
+  --color-blue: #64B1F2;      /* primary — decorative accents only (fails text contrast) */
+  --color-green: #037033;     /* primary — headings, links, CTA background */
+  --color-orange: #FA641A;    /* primary — small accents/hover only (borderline as body text) */
+  --color-pink: #FFB7CF;      /* secondary — light background tint for cards */
+  --color-cream: #F4E9D7;     /* secondary — page background */
+  --color-text: #1a1a1a;      /* near-black for body copy; standard choice, not in brand kit */
+  --color-white: #ffffff;
   --max-width: 720px;
 }
 
@@ -15,20 +17,26 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Open Sauce isn't on Google Fonts; Open Sans is the brand guidelines' own suggested substitute */
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--color-text);
-  background-color: var(--color-bg);
+  background-color: var(--color-cream);
   line-height: 1.6;
 }
 
+/* Headings use brand green — matches the wordmark, strong contrast on cream */
+h1, h2, h3 {
+  color: var(--color-green);
+}
+
 a {
-  color: var(--color-accent);
+  color: var(--color-green); /* blue/orange skipped as text color — both fail contrast checks */
 }
 
 /* Visible keyboard focus state for links/buttons */
 a:focus-visible,
 button:focus-visible {
-  outline: 3px solid var(--color-accent);
+  outline: 3px solid var(--color-green);
   outline-offset: 3px;
 }
 
@@ -62,14 +70,17 @@ section {
   margin-bottom: 2.5rem;
 }
 
+/* Blue rule under each section heading — decorative only, so blue's weak text contrast never matters */
 section h2 {
   font-size: 1.5rem;
   margin-bottom: 1.25rem;
+  border-bottom: 3px solid var(--color-blue);
+  padding-bottom: 0.5rem;
 }
 
-/* Section 1: workshop theme cards */
+/* Section 1: workshop theme cards, tinted with the secondary pink */
 .theme {
-  background-color: var(--color-section-bg);
+  background-color: var(--color-pink);
   border-radius: 8px;
   padding: 1.25rem 1.5rem;
   margin-bottom: 1rem;
@@ -105,7 +116,37 @@ section h2 {
   margin-bottom: 0;
 }
 
-/* CTA button */
+/* Section 2: fixed 3-photo row, wraps to stacked on narrow screens */
+.gain-photos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.gain-photo {
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid var(--color-blue);
+}
+
+/* Section 3: flyer image, fixed aspect ratio so layout doesn't shift once the real flyer is added */
+.flyer {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 4 / 5.2;
+  object-fit: cover;
+  margin: 1.5rem auto 0;
+  border-radius: 8px;
+  border: 2px solid var(--color-blue);
+}
+
+/* CTA button: green background/white text for reliable contrast; orange reserved for hover */
 .cta {
   text-align: center;
   margin-top: 3rem;
@@ -113,8 +154,8 @@ section h2 {
 
 .button {
   display: inline-block;
-  background-color: var(--color-accent);
-  color: var(--color-accent-text);
+  background-color: var(--color-green);
+  color: var(--color-white);
   text-decoration: none;
   font-weight: 600;
   font-size: 1.05rem;
@@ -123,7 +164,7 @@ section h2 {
 }
 
 .button:hover {
-  opacity: 0.9;
+  background-color: var(--color-orange);
 }
 
 /* Responsive: larger headline once there's room for it */

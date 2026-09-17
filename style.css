@@ -1,0 +1,125 @@
+:root {
+  --color-bg: #ffffff;
+  --color-text: #1a1a1a;
+  --color-accent: #6a2c5c;
+  --color-accent-text: #ffffff;
+  --color-section-bg: #faf7f9;
+  --max-width: 720px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--color-accent);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.hero {
+  padding: 3rem 1.5rem 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 2rem;
+  line-height: 1.25;
+  margin: 0 0 1rem;
+}
+
+.hero .intro {
+  font-size: 1.125rem;
+  margin: 0;
+}
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+}
+
+section {
+  margin-bottom: 2.5rem;
+}
+
+section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.theme {
+  background-color: var(--color-section-bg);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.theme:last-child {
+  margin-bottom: 0;
+}
+
+.theme h3 {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+}
+
+.theme p {
+  margin: 0;
+}
+
+.gain-list,
+.after-list {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.gain-list li,
+.after-list li {
+  margin-bottom: 0.6rem;
+}
+
+.gain-list li:last-child,
+.after-list li:last-child {
+  margin-bottom: 0;
+}
+
+.cta {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.button {
+  display: inline-block;
+  background-color: var(--color-accent);
+  color: var(--color-accent-text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0.9rem 2rem;
+  border-radius: 6px;
+}
+
+.button:hover {
+  opacity: 0.9;
+}
+
+@media (min-width: 640px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+}

@@ -59,6 +59,42 @@ button:focus-visible {
   margin: 0;
 }
 
+/* Quick facts (from the flyer): single column on mobile, two columns once there's room */
+.quick-facts {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin: 2rem 0 0;
+  text-align: left;
+}
+
+@media (min-width: 640px) {
+  .quick-facts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Each fact is its own blue card — the one place blue is used as a background rather than a text color */
+.fact {
+  background-color: var(--color-blue);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+}
+
+.fact dt {
+  font-weight: 700;
+  color: var(--color-green);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.25rem;
+}
+
+.fact dd {
+  margin: 0;
+  color: var(--color-text);
+}
+
 /* Page content width + spacing between sections */
 main {
   max-width: var(--max-width);
@@ -134,12 +170,12 @@ section h2 {
   border: 2px solid var(--color-blue);
 }
 
-/* Section 3: flyer image, aspect ratio matches the real flyer (2454x1840) so cover doesn't crop it */
+/* Section 3: flyer image, aspect ratio matches the real flyer (1545x1999, portrait) so cover doesn't crop it */
 .flyer {
   display: block;
   width: 100%;
-  max-width: 480px;
-  aspect-ratio: 4 / 3;
+  max-width: 360px;
+  aspect-ratio: 1545 / 1999;
   object-fit: cover;
   margin: 1.5rem auto 0;
   border-radius: 8px;

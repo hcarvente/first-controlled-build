@@ -167,15 +167,19 @@ section h2 {
   display: flex;             /* lays the photos out in a row, side by side */
   flex-wrap: wrap;           /* lets photos drop to a new line if they don't all fit — this is what makes it responsive */
   justify-content: center;   /* centers the row (or the leftover photo on its own line) horizontally */
+  align-items: center;       /* keeps photos vertically centered against each other even though their heights now differ */
   gap: 1.25rem;               /* even spacing between photos, without needing individual margins */
   margin-top: 1.5rem;
 }
 
+/* No aspect-ratio/object-fit here on purpose: photo-1 and photo-2 are a different shape than photo-3
+   (16:9 vs 4:3), and forcing them into one fixed box would crop part of the picture off. height: auto
+   lets each image keep its own true proportions, so the whole photo always shows — the tradeoff is the
+   three photos won't all be exactly the same height in the row. */
 .gain-photo {
   width: 100%;              /* fills its available space up to... */
   max-width: 280px;          /* ...this maximum size */
-  aspect-ratio: 4 / 3;       /* forces a consistent width:height ratio no matter the source image's shape */
-  object-fit: cover;         /* fills that box completely, cropping any excess instead of stretching/squishing */
+  height: auto;              /* scales height to match width automatically, preserving the real photo's shape */
   border-radius: 8px;
   border: 2px solid var(--color-blue);
 }

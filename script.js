@@ -52,6 +52,11 @@
   const overlay = document.createElement('div'); // creates a new, empty <div> element in memory
   overlay.className = 'lightbox';                // gives it the CSS class that styles it as a full-screen overlay
   overlay.hidden = true;                          // starts hidden — nobody's clicked a photo yet
+  // Dialog semantics: role="dialog" + aria-modal="true" tell a screen reader "this is a popup window
+  // that takes over the page," and aria-label gives it a name to announce, since it has no visible heading.
+  overlay.setAttribute('role', 'dialog');
+  overlay.setAttribute('aria-modal', 'true');
+  overlay.setAttribute('aria-label', 'Enlarged photo');
   // innerHTML lets us insert a chunk of HTML at once: a close button and an (empty for now) image
   overlay.innerHTML = `
     <button class="lightbox-close" aria-label="Close image">&times;</button>
@@ -63,8 +68,13 @@
   const lightboxImage = overlay.querySelector('.lightbox-image');
   const closeButton = overlay.querySelector('.lightbox-close');
 
+  // Remembers whatever was focused right before the lightbox opened, so we can put keyboard focus
+  // back there when it closes instead of losing the visitor's place on the page.
+  let previouslyFocused = null;
+
   // Runs when any gallery image is clicked
   function openLightbox(img) {
+    previouslyFocused = document.activeElement;
     lightboxImage.src = img.src;   // copy the clicked photo's image file into the big lightbox image
     lightboxImage.alt = img.alt;   // copy its alt text too, so it's still accessible when enlarged
     overlay.hidden = false;         // un-hide the overlay, revealing it on screen
@@ -75,6 +85,7 @@
   function closeLightbox() {
     overlay.hidden = true;
     lightboxImage.src = ''; // clear the image so the browser isn't holding onto a large photo needlessly
+    if (previouslyFocused) previouslyFocused.focus(); // send keyboard focus back where it came from
   }
 
   // Attach a click listener to every gallery image
@@ -93,8 +104,18 @@
     if (e.target === overlay) closeLightbox();
   });
 
-  // Pressing the Escape key closes the lightbox too, but only if it's currently open
+  // Keyboard behavior while the lightbox is open:
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !overlay.hidden) closeLightbox();
+    if (overlay.hidden) return; // ignore key presses when the lightbox isn't even open
+
+    if (e.key === 'Escape') {
+      closeLightbox();
+    } else if (e.key === 'Tab') {
+      // Focus trap: the close button is the only focusable thing inside the dialog, so pressing
+      // Tab (or Shift+Tab) should just keep focus on it instead of "escaping" into the page
+      // behind the overlay. preventDefault() stops the browser's normal Tab behavior.
+      e.preventDefault();
+      closeButton.focus();
+    }
   });
 })();

@@ -129,3 +129,11 @@ A running record of the prompts given to build this one-page website, and what w
 **Prompt:** Noticed photo-3 was now visibly taller than the other two (a side effect of fixing the cropping in step 15) and asked to crop the top and bottom of that actual photo a bit so its proportions match the other two.
 
 **Built:** Looked at photo-3.jpg first to find a safe crop line, then cropped it from 1600×1199 down to 1600×900 — trimming mostly empty ceiling from the top and empty floor from the bottom, keeping everyone in the photo fully in frame. It now shares the exact same 1600×900 dimensions as photo-1 and photo-2, so all three render at matching sizes in the row automatically — no CSS or HTML changes needed, just the image file itself. Verified with a screenshot.
+
+---
+
+### 17. Final header edit
+
+**Prompt:** Last edit — change the top of the header to say "Alianza Leadership Program," and fold the old headline ("Lead From Your Values. Build Power in Community.") into the intro paragraph below it.
+
+**Built:** Changed the `<h1>` to "Alianza Leadership Program" and merged the former headline into the intro paragraph as its opening sentences, in sentence case to match surrounding body text: "Lead from your values. Build power in community. A leadership program for emerging leaders ready to strengthen their voice, lead with authenticity, and create change alongside others." Verified with a screenshot.

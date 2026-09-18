@@ -121,3 +121,11 @@ A running record of the prompts given to build this one-page website, and what w
 **Prompt:** Asked for a final pass over the completed build "with an eye like a coding instructor" and a brief summary of anything missed. Findings: the CTA still pointed to `#`, two of the three Section 2 photos were being cropped (16:9 photos forced into a 4:3 box), and the lightbox was missing proper dialog accessibility semantics. Asked to fix all three — provided the real Google Form URL for the CTA, confirmed the cropping should be fixed so photos render in full, and asked for the dialog semantics fix with a plain-English explanation.
 
 **Built:** Pointed the CTA button at the real application Google Form, opening in a new tab (`target="_blank" rel="noopener noreferrer"`) so visitors don't lose the info page. Removed the fixed `aspect-ratio`/`object-fit: cover` from `.gain-photo` so all three photos render at their true proportions with nothing cropped off (tradeoff: the three photos in the row are no longer the same height). Added modal dialog semantics to the lightbox in `script.js`: `role="dialog"`, `aria-modal="true"`, and `aria-label` on the overlay so screen readers announce it correctly; a focus trap so Tab/Shift+Tab can't escape into the page behind the open lightbox; and focus restoration so closing it returns keyboard focus to wherever it was before opening. Verified all three fixes with screenshots and a JS-error check.
+
+---
+
+### 16. Even out the photo row
+
+**Prompt:** Noticed photo-3 was now visibly taller than the other two (a side effect of fixing the cropping in step 15) and asked to crop the top and bottom of that actual photo a bit so its proportions match the other two.
+
+**Built:** Looked at photo-3.jpg first to find a safe crop line, then cropped it from 1600×1199 down to 1600×900 — trimming mostly empty ceiling from the top and empty floor from the bottom, keeping everyone in the photo fully in frame. It now shares the exact same 1600×900 dimensions as photo-1 and photo-2, so all three render at matching sizes in the row automatically — no CSS or HTML changes needed, just the image file itself. Verified with a screenshot.

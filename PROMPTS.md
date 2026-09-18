@@ -105,3 +105,11 @@ A running record of the prompts given to build this one-page website, and what w
 **Prompt:** Nonprofit feedback: the stipend is changing from $800 to $500, and a replacement flyer was on its way. Confirmed "cost" meant the stipend line, then replaced `images/flyer.jpg` with the new version.
 
 **Built:** Looked at the new flyer rather than assuming only the stipend changed — confirmed everything else (Cost, Format, Commitments, Eligibility) is identical to the original. Updated the `Stipend` bullet in `index.html`'s quick-facts list from $800 to $500. Compressed the new flyer with the same settings used before (1600px max dimension, quality-tuned) so it stays consistent with the other images' file sizes; its dimensions matched the original flyer exactly, so no CSS aspect-ratio changes were needed. Verified the text update with a screenshot before committing.
+
+---
+
+### 14. Add a README and go line-by-line on comments
+
+**Prompt:** Drafted README.md content describing the site, its purpose as a First Controlled Build for the Next Chapter — Fall 2026 cohort, and the constraints it was built under (approved after one round of feedback). Separately, asked for detailed comments throughout the HTML/CSS/JS explaining each line of code.
+
+**Built:** Wrote `README.md` with a Purpose section (org link, class/cohort context, prompt-driven process pointing to this log) and a Constraints section (plain HTML/CSS/JS only, exactly 3 sections + 1 CTA, no invented content, no extra features, accessibility-first, brand fidelity). Rewrote `index.html`, `style.css`, and `script.js` with detailed comments explaining what each tag/attribute does in HTML, what each property does in CSS, and what each statement does in the JavaScript. Verified with a screenshot and a JS-error check that the comment-only rewrite didn't change how the page looks or behaves.

@@ -1,43 +1,56 @@
+<!-- Tells the browser this is modern HTML5 (always the first line of an HTML file) -->
 <!DOCTYPE html>
+<!-- lang="en" tells screen readers/translators the page's language -->
 <html lang="en">
 <head>
-  <!-- Standard character encoding + mobile-responsive viewport setup -->
+  <!-- charset=UTF-8: use the character set that supports accented letters, emoji, special punctuation, etc. -->
+  <!-- viewport meta: makes the page render at the phone's actual width instead of a zoomed-out "desktop" view -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <title> text shows in the browser tab and in search results -->
   <title>Alianza Leadership Program | Alianza for Opportunity</title>
 
-  <!-- Description + preview card (Open Graph/Twitter) shown when this link is shared -->
+  <!-- meta description: the summary Google/search engines show under the page title -->
   <meta name="description" content="A leadership program for emerging leaders ages 18-25 ready to strengthen their voice, lead with authenticity, and create change alongside others.">
+  <!-- og: (Open Graph) tags control the preview card shown when this link is pasted into iMessage, Slack, Facebook, etc. -->
   <meta property="og:title" content="Alianza Leadership Program | Alianza for Opportunity">
   <meta property="og:description" content="A leadership program for emerging leaders ages 18-25 ready to strengthen their voice, lead with authenticity, and create change alongside others.">
   <meta property="og:type" content="website">
   <!-- og:image needs to be an absolute URL once this page is live (e.g. https://yourdomain.org/images/icon-512.png) -->
   <meta property="og:image" content="images/icon-512.png">
+  <!-- twitter: tags are the same idea as og: tags above, but specifically for X/Twitter's preview card format -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Alianza Leadership Program | Alianza for Opportunity">
   <meta name="twitter:description" content="A leadership program for emerging leaders ages 18-25 ready to strengthen their voice, lead with authenticity, and create change alongside others.">
   <meta name="twitter:image" content="images/icon-512.png">
 
-  <!-- Favicon (browser tab) and Apple touch icon (iOS home screen) -->
+  <!-- rel="icon": the small icon shown in the browser tab -->
+  <!-- rel="apple-touch-icon": the icon iOS uses if someone adds this page to their home screen -->
   <link rel="icon" type="image/png" href="images/icon-32.png">
   <link rel="apple-touch-icon" href="images/icon-180.png">
 
   <!-- Open Sans: free Google Fonts stand-in for the brand's Open Sauce (not available on Google Fonts) -->
+  <!-- preconnect: tells the browser to start connecting to Google's font server early, so the font loads a bit faster -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <!-- This link actually downloads the font file (three weights: 400 regular, 600 semi-bold, 700 bold) -->
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Loads our own stylesheet, which does all the visual styling for this page -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- Hero: logo, headline, intro, and key facts from the flyer -->
+  <!-- <header> is a semantic tag: it tells screen readers/browsers "this is the intro area of the page" -->
   <header class="hero">
-    <!-- Org logo -->
+    <!-- Org logo. alt text describes the image for screen readers and if the image fails to load -->
     <img class="site-logo" src="images/logo.png" alt="Alianza for Opportunity logo">
 
+    <!-- <h1> is the single most important heading on the page — search engines and screen readers treat it as the page's main title -->
     <h1>Lead From Your Values. Build Power in Community.</h1>
     <p class="intro">A leadership program for emerging leaders ready to strengthen their voice, lead with authenticity, and create change alongside others.</p>
 
     <!-- Key facts pulled from the official flyer, as real text so they're readable by screen readers/search, not locked inside the flyer image -->
+    <!-- <ul> = "unordered list" (bullet points). <strong> makes the label bold AND tells screen readers it's important -->
     <ul class="quick-facts">
       <li><strong>Cost:</strong> Free — at no cost to participants</li>
       <li><strong>Format:</strong> Hybrid</li>
@@ -47,13 +60,19 @@
     </ul>
   </header>
 
+  <!-- <main> wraps the primary content of the page (as opposed to header/footer) — every page should have exactly one -->
   <main>
     <!-- Section 1: the six workshops, grouped into three themes -->
+    <!-- aria-labelledby="learn-heading" tells screen readers "this section's name is whatever text is in the element with id=learn-heading" (the h2 right below) -->
     <section aria-labelledby="learn-heading">
+      <!-- <h2> = second-level heading. Headings must go in order (h1, then h2, then h3) so screen readers can build a page outline -->
       <h2 id="learn-heading">What You'll Learn</h2>
 
       <!-- data-reveal: fades/slides each card in as it scrolls into view (see script.js) -->
+      <!-- <article> is used here because each card is a self-contained chunk of content (a workshop theme) -->
+      <!-- data-reveal is a "data attribute" — it does nothing by itself, it's just a label our JavaScript looks for -->
       <article class="theme" data-reveal>
+        <!-- <h3> = third-level heading, nested one level under this section's h2 -->
         <h3>Values-Based Leadership</h3>
         <p>Participants identify their personal values, challenge traditional leadership myths, explore different leadership styles, and develop principles for authentic, purpose-driven leadership.</p>
       </article>
@@ -84,6 +103,8 @@
 
       <!-- Fixed 3-photo block: real program photos. data-reveal fades each in on scroll; click to open in the lightbox (see script.js) -->
       <div class="gain-photos">
+        <!-- loading="lazy": tells the browser "don't download this image until it's about to scroll into view" — saves bandwidth -->
+        <!-- alt text describes what's actually in each photo, for screen readers and if an image fails to load -->
         <img class="gain-photo" src="images/photo-1.jpg" loading="lazy" data-reveal alt="Group of Alianza Leadership Program participants smiling together around a table, one holding an Alianza for Opportunity tote bag">
         <img class="gain-photo" src="images/photo-2.jpg" loading="lazy" data-reveal alt="Program participants and mentors seated in a circle during a group discussion">
         <img class="gain-photo" src="images/photo-3.jpg" loading="lazy" data-reveal alt="Program participants posing together in front of a 'Galaxy Gives' sign, some holding certificates">
@@ -108,13 +129,15 @@
       <img class="flyer" src="images/flyer.jpg" loading="lazy" data-reveal alt="Alianza for Opportunity Leadership Program flyer with program details and eligibility information">
     </section>
 
-    <!-- CTA: href is a placeholder until the real application URL is provided -->
+    <!-- CTA (call to action): href is a placeholder ("#" = "top of this page") until the real application URL is provided -->
     <div class="cta">
+      <!-- <a> is a link. class="button" is just a styling hook — CSS makes this link LOOK like a button, but it's still a real link underneath -->
       <a class="button" href="#">Apply to the Program</a>
     </div>
   </main>
 
   <!-- Site JavaScript: scroll-reveal animation and the photo/flyer lightbox -->
+  <!-- Placed at the very end of <body> so the browser reads/builds the whole page first, THEN runs the script -->
   <script src="script.js"></script>
 </body>
 </html>

@@ -1,4 +1,6 @@
 /* Brand colors pulled from Alianza for Opportunity's 2024 brand guidelines */
+/* :root is a special selector that targets the whole document — this is where we define CSS "variables" (--name: value) */
+/* Defining colors once here means changing a color in one place updates it everywhere it's used below */
 :root {
   --color-blue: #64B1F2;      /* primary — decorative accents only (fails text contrast) */
   --color-green: #037033;     /* primary — headings, links, CTA background */
@@ -7,29 +9,35 @@
   --color-cream: #F4E9D7;     /* secondary — page background */
   --color-text: #1a1a1a;      /* near-black for body copy; standard choice, not in brand kit */
   --color-white: #ffffff;     /* plain white, used as text on the green CTA button */
-  --max-width: 960px;
+  --max-width: 960px;         /* the widest the page's content is allowed to get, even on huge monitors */
 }
 
 /* Base reset */
+/* The * selector means "every single element". box-sizing: border-box makes padding/borders count INSIDE
+   an element's declared width, instead of adding to it — this avoids a lot of confusing sizing math. */
 * {
   box-sizing: border-box;
 }
 
 /* Bumps the root font size so every rem-based size on the page scales up proportionally */
+/* "rem" units (used all over this file) are always relative to this html font-size — 112.5% of the
+   browser's default (usually 16px) equals 18px, so every rem value below renders ~12.5% bigger */
 html {
   font-size: 112.5%;
 }
 
 body {
-  margin: 0;
+  margin: 0; /* removes the browser's default page margin so our own padding controls all spacing */
   /* Open Sauce isn't on Google Fonts; Open Sans is the brand guidelines' own suggested substitute */
+  /* This is a "font stack": try Open Sans first, then fall back to the next font if it can't load */
   font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: var(--color-text);
+  color: var(--color-text);              /* var(--name) reads the value from a variable defined in :root */
   background-color: var(--color-cream);
-  line-height: 1.6;
+  line-height: 1.6; /* space between lines of text, as a multiple of the font size — improves readability */
 }
 
 /* Headings use brand green — matches the wordmark, strong contrast on cream */
+/* Comma-separated selectors (h1, h2, h3) apply the same rule to all three at once */
 h1, h2, h3 {
   color: var(--color-green);
 }
@@ -39,33 +47,35 @@ a {
 }
 
 /* Visible keyboard focus state for links/buttons */
+/* :focus-visible only shows this outline when someone is tabbing with a keyboard (not clicking with a mouse) —
+   this is what lets a keyboard user see which link/button is currently selected */
 a:focus-visible,
 button:focus-visible {
   outline: 3px solid var(--color-green);
-  outline-offset: 3px;
+  outline-offset: 3px; /* pushes the outline 3px away from the element instead of touching its edge */
 }
 
 /* Hero: headline + intro */
 .hero {
-  padding: 3rem 1.5rem 2rem;
-  max-width: var(--max-width);
-  margin: 0 auto;
+  padding: 3rem 1.5rem 2rem;   /* shorthand order is: top, left+right, bottom */
+  max-width: var(--max-width); /* never grows wider than this, even on a huge screen */
+  margin: 0 auto;              /* top/bottom margin 0, left/right margin "auto" — this is what centers the block horizontally */
   text-align: center;
 }
 
 /* Org logo, centered above the headline (wide horizontal lockup, ~4:1 aspect ratio) */
 .site-logo {
-  display: block;
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-  margin: 0 auto 1.5rem;
+  display: block;      /* images are inline by default; block lets us center it with margin auto below */
+  width: 100%;          /* fills its container... */
+  max-width: 320px;     /* ...but never grows past this size on wider screens */
+  height: auto;         /* scales height to match width automatically, keeping the image's proportions correct */
+  margin: 0 auto 1.5rem; /* centers it horizontally, adds space below before the headline */
 }
 
 .hero h1 {
   font-size: 2.25rem;
   line-height: 1.25;
-  margin: 0 0 1rem;
+  margin: 0 0 1rem; /* no margin on top/left/right, 1rem of space below */
 }
 
 .hero .intro {
@@ -75,53 +85,54 @@ button:focus-visible {
 
 /* Quick facts (from the flyer): plain bullet list, left-aligned within the centered hero */
 .quick-facts {
-  text-align: left;
+  text-align: left;        /* overrides the centered text from .hero — bullet lists read better left-aligned */
   max-width: 640px;
-  margin: 1.75rem auto 0;
-  padding-left: 1.25rem;
+  margin: 1.75rem auto 0;  /* centers the list itself, adds space above it */
+  padding-left: 1.25rem;   /* room for the bullet points so they don't hang off the edge */
 }
 
 .quick-facts li {
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.6rem; /* space between each bullet point */
 }
 
+/* :last-child targets only the final <li> in the list, so we can remove the extra trailing space */
 .quick-facts li:last-child {
   margin-bottom: 0;
 }
 
 .quick-facts strong {
-  color: var(--color-green);
+  color: var(--color-green); /* makes the bold "Cost:", "Format:" etc. labels stand out in brand green */
 }
 
 /* Page content width + spacing between sections */
 main {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 1.5rem 3rem;
+  padding: 0 1.5rem 3rem; /* side padding so text doesn't touch the screen edges, extra space at the bottom */
 }
 
 section {
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.5rem; /* vertical breathing room between Section 1, 2, and 3 */
 }
 
 /* Blue rule under each section heading — decorative only, so blue's weak text contrast never matters */
 section h2 {
   font-size: 1.75rem;
   margin-bottom: 1.25rem;
-  border-bottom: 3px solid var(--color-blue);
-  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--color-blue); /* draws a colored line under the heading, like an underline */
+  padding-bottom: 0.5rem;                      /* space between the text and that line */
 }
 
 /* Section 1: workshop theme cards, tinted with the secondary pink */
 .theme {
   background-color: var(--color-pink);
-  border-radius: 8px;
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1rem;
+  border-radius: 8px;         /* rounds the corners of the card */
+  padding: 1.25rem 1.5rem;    /* space inside the card, between its background edge and its text */
+  margin-bottom: 1rem;        /* space between this card and the next one */
 }
 
 .theme:last-child {
-  margin-bottom: 0;
+  margin-bottom: 0; /* the last card doesn't need extra space below it before the next section starts */
 }
 
 .theme h3 {
@@ -134,6 +145,7 @@ section h2 {
 }
 
 /* Section 2 + 3: outcome/opportunity list spacing */
+/* Both lists share identical spacing rules, so we style them together with a comma */
 .gain-list,
 .after-list {
   margin: 0;
@@ -152,18 +164,18 @@ section h2 {
 
 /* Section 2: fixed 3-photo row, wraps to stacked on narrow screens */
 .gain-photos {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.25rem;
+  display: flex;             /* lays the photos out in a row, side by side */
+  flex-wrap: wrap;           /* lets photos drop to a new line if they don't all fit — this is what makes it responsive */
+  justify-content: center;   /* centers the row (or the leftover photo on its own line) horizontally */
+  gap: 1.25rem;               /* even spacing between photos, without needing individual margins */
   margin-top: 1.5rem;
 }
 
 .gain-photo {
-  width: 100%;
-  max-width: 280px;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  width: 100%;              /* fills its available space up to... */
+  max-width: 280px;          /* ...this maximum size */
+  aspect-ratio: 4 / 3;       /* forces a consistent width:height ratio no matter the source image's shape */
+  object-fit: cover;         /* fills that box completely, cropping any excess instead of stretching/squishing */
   border-radius: 8px;
   border: 2px solid var(--color-blue);
 }
@@ -173,7 +185,7 @@ section h2 {
   display: block;
   width: 100%;
   max-width: 460px;
-  aspect-ratio: 1545 / 1999;
+  aspect-ratio: 1545 / 1999; /* matches the actual flyer image's proportions so "cover" barely has to crop anything */
   object-fit: cover;
   margin: 1.5rem auto 0;
   border-radius: 8px;
@@ -187,21 +199,25 @@ section h2 {
 }
 
 .button {
-  display: inline-block;
+  display: inline-block;      /* lets us give a <a> link padding/width like a block, while still flowing inline */
   background-color: var(--color-green);
   color: var(--color-white);
-  text-decoration: none;
-  font-weight: 600;
+  text-decoration: none;      /* removes the default underline that links have */
+  font-weight: 600;           /* semi-bold */
   font-size: 1.05rem;
-  padding: 0.9rem 2rem;
+  padding: 0.9rem 2rem;       /* top/bottom, left/right — this is what gives the button its size */
   border-radius: 6px;
 }
 
+/* :hover only applies while the mouse is over the element */
 .button:hover {
   background-color: var(--color-orange);
 }
 
 /* Responsive: larger headline once there's room for it */
+/* @media (min-width: 640px) means "only apply these rules when the browser window is at least 640px wide" —
+   this is the core technique behind responsive design: mobile styles are the default above, and this
+   block adds/overrides styles just for bigger screens */
 @media (min-width: 640px) {
   .hero h1 {
     font-size: 3rem;
@@ -209,45 +225,55 @@ section h2 {
 }
 
 /* Scroll-reveal: elements start hidden/shifted, then fade+slide in once script.js marks them visible */
+/* [data-reveal] is an "attribute selector" — it targets any element that has a data-reveal attribute,
+   matching the ones marked in index.html. This is the STARTING state, before JavaScript does anything. */
 [data-reveal] {
-  opacity: 0;
-  transform: translateY(16px);
+  opacity: 0;                     /* fully invisible */
+  transform: translateY(16px);   /* shifted down 16px from its normal position */
+  /* transition tells the browser to animate CHANGES to opacity/transform smoothly over half a second,
+     instead of snapping instantly — this is what actually creates the "fade and slide" effect */
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
+/* This is the END state. script.js adds the "is-visible" class via JavaScript once the element
+   scrolls into view, and the browser automatically animates between the two states above. */
 [data-reveal].is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
 /* Lightbox overlay created by script.js when a photo/flyer is clicked */
+/* This whole element doesn't exist in index.html — script.js builds it and adds it to the page with JavaScript */
 .lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
+  position: fixed;   /* stays in place over the whole screen even if the page is scrolled */
+  inset: 0;          /* shorthand for top:0, right:0, bottom:0, left:0 — stretches it to fill the screen */
+  background: rgba(0, 0, 0, 0.85); /* black at 85% opacity — dims the page behind the enlarged photo */
   display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
+  align-items: center;      /* centers the photo vertically... */
+  justify-content: center;  /* ...and horizontally */
+  z-index: 100;              /* stacking order — a high number keeps this on top of everything else on the page */
 }
 
+/* The [hidden] attribute is a real, built-in HTML attribute (script.js toggles it with overlay.hidden = true/false).
+   By default browsers already hide [hidden] elements, but writing it explicitly here guarantees it can't be
+   accidentally overridden by the display:flex rule above. */
 .lightbox[hidden] {
   display: none;
 }
 
 .lightbox-image {
-  max-width: 90vw;
-  max-height: 85vh;
+  max-width: 90vw;   /* vw = "viewport width" — never wider than 90% of the browser window */
+  max-height: 85vh;  /* vh = "viewport height" — never taller than 85% of the browser window */
   border-radius: 8px;
 }
 
 .lightbox-close {
-  position: absolute;
+  position: absolute; /* positions relative to .lightbox (the nearest positioned ancestor) instead of the whole page */
   top: 1rem;
   right: 1.5rem;
-  font-size: 2rem;
+  font-size: 2rem;    /* makes the × close icon big enough to tap easily */
   color: var(--color-white);
-  background: none;
-  border: none;
-  cursor: pointer;
+  background: none;   /* removes the default gray button background */
+  border: none;        /* removes the default button border */
+  cursor: pointer;     /* shows a hand/pointer cursor on hover, signaling it's clickable */
 }
